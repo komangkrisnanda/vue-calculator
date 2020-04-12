@@ -1,6 +1,6 @@
 <template>
   <div class="calculator">
-    <div class="display">{{ current || '0' }}</div>
+    <div class="display">{{ result || '0' }}</div>
     <div @click="clear" class="btn">C</div>
     <div @click="sign" class="btn">+/-</div>
     <div @click="percent" class="btn">%</div>
@@ -54,7 +54,7 @@ export default {
         this.current = '';
         this.operatorClicked = false;
       }
-      if(this.current == '0'){
+      if(this.current == '0' && this.operator == false){
         this.current = '';
       }
 
@@ -93,6 +93,11 @@ export default {
       this.previous = null;
     }
   },
+  computed: {
+    result: function(){
+      return `${parseFloat(parseFloat(this.current).toFixed(2))}`; 
+    }
+  }
 }
 </script>
 
